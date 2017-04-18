@@ -15,7 +15,6 @@ Die Dateien `whsthesis.sty` und `background.png` in das LaTeX-Projekt kopieren. 
 Vor der Verwendung müssen unterschiedliche Variablen mit den Paramteren der Abschlussarbeit gesetzt werden. Folgende Variablen müssen zwangsweise gesetzt werden:
 
 - `\title`
-- `\place`
 - `\thesisType`
 - `\degree`
 - `\first`
@@ -25,13 +24,12 @@ Vor der Verwendung müssen unterschiedliche Variablen mit den Paramteren der Abs
 - `\department`
 - `\firstExaminer`
 - `\secondExaminer`
-- `\dateOfSubmission`
 
-Andere Variablen können optional gesetzt werden. So geht das Paket davon aus, dass die `background.png`-Datei in einem Verzeichnis `img` gespeichert ist. Wurde sie an anderer Stelle abgelegt, kann der Pfad wie folgt geändert werden:
+Andere Variablen können optional gesetzt werden: 
 
-```latex
-\backgroundImage{<customPath>/background}
-```
+- `\place` (default: Bocholt)
+- `\dateOfSubmission` (default: \today)
+- `\backgroundImage{<customPath>/background}` (Pfad zum Speicherort der background.png-Datei, default: img/background)
 
 # Befehle
 

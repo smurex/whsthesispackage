@@ -5,14 +5,17 @@
 \RequirePackage{tikz}
 \RequirePackage{ifthen}
 
-% set path to background-image
+% set defaults
 \def\@background{img/background}
+\def\@place{Bocholt}
+\def\@dateOfSubmission{\today}
 
 % vars the user can set
 \newcommand{\backgroundImage}[1]{\def\@background{#1}}
+\newcommand{\place}[1]{\def\@place{#1}}
+\newcommand{\dateOfSubmission}[1]{\def\@dateOfSubmission{#1}}
 
 % vars the user has to set
-\newcommand{\place}[1]{\def\@place{#1}}
 \newcommand{\thesisType}[1]{\def\@thesisType{#1}}
 \newcommand{\first}[1]{\def\@first{#1}}
 \newcommand{\last}[1]{\def\@last{#1}}
@@ -22,7 +25,6 @@
 \newcommand{\degree}[1]{\def\@degree{#1}}
 \newcommand{\firstExaminer}[1]{\def\@firstExaminer{#1}}
 \newcommand{\secondExaminer}[1]{\def\@secondExaminer{#1}}
-\newcommand{\dateOfSubmission}[1]{\def\@dateOfSubmission{#1}}
 
 % set author by @first and @last
 \author{\@first\ \@last}
@@ -35,7 +37,6 @@
     }{}	
 }
 \AtBeginDocument{
-    \@checkVar{place}{\@place}
     \@checkVar{thesisType}{\@thesisType}
     \@checkVar{first}{\@first}
     \@checkVar{last}{\@last}
@@ -45,7 +46,6 @@
     \@checkVar{degree}{\@degree}
     \@checkVar{firstExaminer}{\@firstExaminer}
     \@checkVar{secondExaminer}{\@secondExaminer}
-    \@checkVar{dateOfSubmission}{\@dateOfSubmission}
 }
 
 % single entry on titlepage
