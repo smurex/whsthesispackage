@@ -4,6 +4,7 @@
 \RequirePackage[ngerman]{babel}
 \RequirePackage{tikz}
 \RequirePackage{ifthen}
+\RequirePackage{anyfontsize}
 
 % set defaults
 \def\@background{img/background}
@@ -51,11 +52,30 @@
 % single entry on titlepage
 \newcommand{\@titlepoint}[2]{
     {
-        \footnotesize
+        \scriptsize
         #1
     }
 
-    \textbf{#2}
+    #2
+
+    \vspace{0.5cm}
+
+    \hrule
+
+    \vspace{0.5cm}
+}
+
+% large single entry on titlepage
+\newcommand{\@titlepointlarge}[2]{
+    {
+        \scriptsize
+        #1
+    }
+
+    {
+        \large
+        \textbf{#2}
+    }
 
     \vspace{0.5cm}
 
@@ -82,13 +102,13 @@
         \vspace{2cm}
 
         {
-            \Huge
+            \fontsize{46}{55}\selectfont
             \textbf{\@thesisType}
         }
 
         \vspace{1cm}
 
-        \@titlepoint{Titel der Arbeit // Title of Thesis}{\@title}
+        \@titlepointlarge{Titel der Arbeit // Title of Thesis}{\@title}
         \@titlepoint{Akademischer Abschlussgrad: Grad, Fachrichtung (Abkürzung) // Degree}{\@degree}
         \@titlepoint{Autorenname, Geburtsort // Name, Place of Birth}{\@first\ \@last, \@placeOfBirth}
         \@titlepoint{Studiengang // Course of Study}{\@courseOfStudy}
