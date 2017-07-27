@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{whsthesis}[2017/04/18 WHS Thesis]
+\ProvidesPackage{whsthesis}[2017/07/27 WHS Thesis]
 
 \RequirePackage[ngerman]{babel}
 \RequirePackage{tikz}
@@ -7,28 +7,32 @@
 \RequirePackage{anyfontsize}
 
 % set defaults
-\def\@background{img/background}
-\def\@place{Bocholt}
-\def\@dateOfSubmission{\today}
+\def\@whsBackground{img/background}
+\def\@whsPlace{Bocholt}
+\def\@whsDateOfSubmission{\today}
 
 % vars the user can set
-\newcommand{\backgroundImage}[1]{\def\@background{#1}}
-\newcommand{\place}[1]{\def\@place{#1}}
-\newcommand{\dateOfSubmission}[1]{\def\@dateOfSubmission{#1}}
+\newcommand{\whsBackgroundImage}[1]{\def\@whsBackground{#1}}
+\newcommand{\whsPlace}[1]{\def\@whsPlace{#1}}
+\newcommand{\whsDateOfSubmission}[1]{\def\@whsDateOfSubmission{#1}}
 
 % vars the user has to set
-\newcommand{\thesisType}[1]{\def\@thesisType{#1}}
-\newcommand{\first}[1]{\def\@first{#1}}
-\newcommand{\last}[1]{\def\@last{#1}}
-\newcommand{\placeOfBirth}[1]{\def\@placeOfBirth{#1}}
-\newcommand{\courseOfStudy}[1]{\def\@courseOfStudy{#1}}
-\newcommand{\department}[1]{\def\@department{#1}}
-\newcommand{\degree}[1]{\def\@degree{#1}}
-\newcommand{\firstExaminer}[1]{\def\@firstExaminer{#1}}
-\newcommand{\secondExaminer}[1]{\def\@secondExaminer{#1}}
+\newcommand{\whsThesisTitle}[1]{\def\@whsThesisTitle{#1}} 
+\newcommand{\whsThesisType}[1]{\def\@whsThesisType{#1}}
+\newcommand{\whsFirst}[1]{\def\@whsFirst{#1}}
+\newcommand{\whsLast}[1]{\def\@whsLast{#1}}
+\newcommand{\whsPlaceOfBirth}[1]{\def\@whsPlaceOfBirth{#1}}
+\newcommand{\whsCourseOfStudy}[1]{\def\@whsCourseOfStudy{#1}}
+\newcommand{\whsDepartment}[1]{\def\@whsDepartment{#1}}
+\newcommand{\whsDegree}[1]{\def\@whsDegree{#1}}
+\newcommand{\whsFirstExaminer}[1]{\def\@whsFirstExaminer{#1}}
+\newcommand{\whsSecondExaminer}[1]{\def\@whsSecondExaminer{#1}}
 
-% set author by @first and @last
-\author{\@first\ \@last}
+% set title by @whsThesisTitle
+\title{\@whsThesisTitle}
+
+% set author by @whsFirst and @whsLast
+\author{\@whsFirst\ \@whsLast}
 
 % check if all variables are set
 \newcommand{\@checkVar}[2]{
@@ -38,15 +42,16 @@
     }{}	
 }
 \AtBeginDocument{
-    \@checkVar{thesisType}{\@thesisType}
-    \@checkVar{first}{\@first}
-    \@checkVar{last}{\@last}
-    \@checkVar{placeOfBirth}{\@placeOfBirth}
-    \@checkVar{courseOfStudy}{\@courseOfStudy}
-    \@checkVar{department}{\@department}
-    \@checkVar{degree}{\@degree}
-    \@checkVar{firstExaminer}{\@firstExaminer}
-    \@checkVar{secondExaminer}{\@secondExaminer}
+    \@checkVar{whsThesisTitle}{\@whsThesisTitle}
+    \@checkVar{whsThesisType}{\@whsThesisType}
+    \@checkVar{whsFirst}{\@whsFirst}
+    \@checkVar{whsLast}{\@whsLast}
+    \@checkVar{whsPlaceOfBirth}{\@whsPlaceOfBirth}
+    \@checkVar{whsCourseOfStudy}{\@whsCourseOfStudy}
+    \@checkVar{whsDepartment}{\@whsDepartment}
+    \@checkVar{whsDegree}{\@whsDegree}
+    \@checkVar{whsFirstExaminer}{\@whsFirstExaminer}
+    \@checkVar{whsSecondExaminer}{\@whsSecondExaminer}
 }
 
 % single entry on titlepage
@@ -85,48 +90,48 @@
 }
 
 % whs background
-\newcommand{\whsbackground}{
+\newcommand{\whsBackground}{
     \tikz[remember picture,overlay] \node[opacity=1,inner sep=0pt] at (current page.center) {
-        \includegraphics[width=\paperwidth,height=\paperheight]{\@background}
+        \includegraphics[width=\paperwidth,height=\paperheight]{\@whsBackground}
     };
 }
 
 % whs styled titlepage
-\newcommand{\makeWhsThesisTitle}{
+\newcommand{\whsTitlePage}{
     \begin{titlepage}
         \setlength{\parskip}{0em}
         \setlength{\parindent}{0em}
 
-        \whsbackground
+        \whsBackground
 
         \vspace{2cm}
 
         {
             \fontsize{46}{55}\selectfont
-            \textbf{\@thesisType}
+            \textbf{\@whsThesisType}
         }
 
         \vspace{1cm}
 
-        \@titlepointlarge{Titel der Arbeit // Title of Thesis}{\@title}
-        \@titlepoint{Akademischer Abschlussgrad: Grad, Fachrichtung (Abkürzung) // Degree}{\@degree}
-        \@titlepoint{Autorenname, Geburtsort // Name, Place of Birth}{\@first\ \@last, \@placeOfBirth}
-        \@titlepoint{Studiengang // Course of Study}{\@courseOfStudy}
-        \@titlepoint{Fachbereich // Department}{\@department}
-        \@titlepoint{Erstprüferin/Erstprüfer // First Examiner}{\@firstExaminer}
-        \@titlepoint{Zweitprüferin/Zweitprüfer // Second Examiner}{\@secondExaminer}
-        \@titlepoint{Abgabedatum // Date of Submission}{\@dateOfSubmission}
+        \@titlepointlarge{Titel der Arbeit // Title of Thesis}{\@whsThesisTitle}
+        \@titlepoint{Akademischer Abschlussgrad: Grad, Fachrichtung (Abkürzung) // Degree}{\@whsDegree}
+        \@titlepoint{Autorenname, Geburtsort // Name, Place of Birth}{\@whsFirst\ \@whsLast, \@whsPlaceOfBirth}
+        \@titlepoint{Studiengang // Course of Study}{\@whsCourseOfStudy}
+        \@titlepoint{Fachbereich // Department}{\@whsDepartment}
+        \@titlepoint{Erstprüferin/Erstprüfer // First Examiner}{\@whsFirstExaminer}
+        \@titlepoint{Zweitprüferin/Zweitprüfer // Second Examiner}{\@whsSecondExaminer}
+        \@titlepoint{Abgabedatum // Date of Submission}{\@whsDateOfSubmission}
     \end{titlepage}
 }
 
 % whs styled statutory declaration
-\newcommand{\makeStatutoryDeclaration}{
+\newcommand{\whsStatutoryDeclaration}{
     {
         \thispagestyle{empty}
         \setlength{\parskip}{.5em}
         \setlength{\parindent}{0em}
 
-        \whsbackground
+        \whsBackground
 
         \vspace{1cm}
 
@@ -134,7 +139,7 @@
 
         \vspace{1cm}
 
-        \@last, \@first
+        \@whsLast, \@whsFirst
         \vspace{0.2cm}
         \hrule
         {
@@ -147,14 +152,14 @@
         Ich versichere hiermit an Eides statt, dass ich die vorliegende Abschlussarbeit mit dem Titel
 
         \makeatletter
-        \textbf{\@title}
+        \textbf{\@whsThesisTitle}
         \makeatother
 
         selbstständig und ohne unzulässige fremde Hilfe erbracht habe. Ich habe keine anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie wörtliche und sinngemäße Zitate kenntlich gemacht. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner Prüfungsbehörde vorgelegen.
 
         \vspace{3cm}
 
-        \@place, \@dateOfSubmission
+        \@whsPlace, \@whsDateOfSubmission
         \vspace{0.2cm}
         \hrule
         {
